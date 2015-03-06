@@ -3,7 +3,7 @@ Alfred 2 workflow for displaying hot topics of CC98 BBS
 
 ## Download
 
-Get the Workflow from [GitHub](https://github.com/VcamX/alfred-cc98-hot-topic/releases).
+Get the workflow from [GitHub](https://github.com/VcamX/alfred-cc98-hot-topic/releases).
 
 ## Credits
 
