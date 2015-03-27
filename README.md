@@ -8,3 +8,7 @@ Get the workflow from [GitHub](https://github.com/VcamX/alfred-cc98-hot-topic/re
 ## Credits
 
 This workflow works with [alfred-workflow](https://github.com/deanishe/alfred-workflow).
+
+## License
+
+It is published under the MIT license.
