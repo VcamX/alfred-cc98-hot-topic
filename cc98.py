@@ -5,11 +5,11 @@ import sys
 import re
 from workflow import Workflow, web
 
-def fix_authors(authors, sections):
+def fix_authors(authors, boards):
     j = 0
     updated_authors = []
-    for i in xrange(len(sections)):
-        if sections[i] == u'心灵之约':
+    for i in xrange(len(boards)):
+        if boards[i] == u'心灵之约':
             updated_authors.append(u'匿名')
         else:
             updated_authors.append(authors[j])
@@ -22,7 +22,7 @@ def get_hottopics():
 
     url_p = re.compile('dispbbs\.asp\?boardid=\d+&id=\d+')
     title_p = re.compile('(?<=<font color=#000066>).+?(?=<\/font>)')
-    section_p = re.compile(
+    board_p = re.compile(
         '<a href="list\.asp\?boardid=\d+" target="_blank">.+?<\/a>')
     author_p = re.compile(
         '<a href="dispuser\.asp\?name=.+?" target="_blank">.+?<\/a>')
@@ -31,19 +31,22 @@ def get_hottopics():
 
     urls = map(lambda x: 'http://www.cc98.org/'+x, url_p.findall(html))
     titles = title_p.findall(html)
-    sections = section_p.findall(html)
+    boards = board_p.findall(html)
     authors = author_p.findall(html)
     time = time_p.findall(html)
 
-    sections = map(lambda x: x[x.index('>')+1:-4], sections)
+    boards = map(lambda x: x[x.index('>')+1:-4], boards)
     authors = map(lambda x: x[x.index('>')+1:-4], authors)
     time = map(lambda x: x[x.index('>')+1:-7], time)
 
-    authors = fix_authors(authors, sections)
+    authors = fix_authors(authors, boards)
    
-    subtitles = map(lambda x: u'板块: {0}    用户: {1}    时间: {2}'.format(*x),
-
-        zip(sections, authors, time))
+    subtitles = map(lambda x:
+            u'板块: {board:<20} 作者: {author:<20} 时间: {time:<20}'.format(
+                board=x[0],
+                author=x[1],
+                time=x[2]),
+            zip(boards, authors, time))
 
     return zip(titles, subtitles, urls)
 
