@@ -5,6 +5,17 @@ import sys
 import re
 from workflow import Workflow, web
 
+def fix_authors(authors, sections):
+    j = 0
+    updated_authors = []
+    for i in xrange(len(sections)):
+        if sections[i] == u'心灵之约':
+            updated_authors.append(u'匿名')
+        else:
+            updated_authors.append(authors[j])
+            j += 1
+    return updated_authors
+
 def get_hottopics():
     resp = web.get('http://www.cc98.org/hottopic.asp')
     html = resp.content.decode('utf-8')
@@ -27,7 +38,11 @@ def get_hottopics():
     sections = map(lambda x: x[x.index('>')+1:-4], sections)
     authors = map(lambda x: x[x.index('>')+1:-4], authors)
     time = map(lambda x: x[x.index('>')+1:-7], time)
+
+    authors = fix_authors(authors, sections)
+   
     subtitles = map(lambda x: u'板块: {0}    用户: {1}    时间: {2}'.format(*x),
+
         zip(sections, authors, time))
 
     return zip(titles, subtitles, urls)
