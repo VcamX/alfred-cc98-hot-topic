@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>net.vcamx.cc98-workflow</string>
+	<string>net.vcamx.alfred-cc98-hot-topics</string>
 	<key>category</key>
 	<string>Internet</string>
 	<key>connections</key>
@@ -23,11 +23,11 @@
 	<key>createdby</key>
 	<string>VcamX</string>
 	<key>description</key>
-	<string>CC98 workflow</string>
+	<string>Displaying hot topics of CC98</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>cc98</string>
+	<string>CC98 Hot Topics</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -92,12 +92,12 @@
 		<key>789AD92E-38EB-4474-AA11-3813BC24DBD2</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>200</real>
 		</dict>
 		<key>9CBF0041-27E8-4AD1-B856-0B683AE3FF2A</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>200</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
