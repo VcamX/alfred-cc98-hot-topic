@@ -31,13 +31,9 @@ def get_hottopics():
 
     urls = map(lambda x: 'http://www.cc98.org/'+x, url_p.findall(html))
     titles = title_p.findall(html)
-    boards = board_p.findall(html)
-    authors = author_p.findall(html)
-    time = time_p.findall(html)
-
-    boards = map(lambda x: x[x.index('>')+1:-4], boards)
-    authors = map(lambda x: x[x.index('>')+1:-4], authors)
-    time = map(lambda x: x[x.index('>')+1:-7], time)
+    boards = map(lambda x: x[x.index('>')+1:-4], board_p.findall(html))
+    authors = map(lambda x: x[x.index('>')+1:-4], author_p.findall(html))
+    time = map(lambda x: x[x.index('>')+1:-7], time_p.findall(html))
 
     authors = fix_authors(authors, boards)
    
@@ -51,16 +47,9 @@ def get_hottopics():
     return zip(titles, subtitles, urls)
 
 def main(wf):
-    try:
-        max_age = int(sys.argv[1])
-    except Exception:
-        max_age = 30
-
-    data = wf.cached_data('cc98', get_hottopics, max_age=max_age)
-
-    for item in data:
-        wf.add_item(item[0], item[1], arg=item[2], valid=True)
-
+    data = wf.cached_data('cc98', get_hottopics)
+    for title, subtitle, url in data:
+        wf.add_item(title, subtitle, arg=url, valid=True)
     wf.send_feedback()
 
 

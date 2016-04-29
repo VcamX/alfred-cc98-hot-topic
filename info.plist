@@ -67,7 +67,7 @@
 				<key>runningsubtext</key>
 				<string>正在努力加载中</string>
 				<key>script</key>
-				<string>python cc98.py 60</string>
+				<string>python cc98.py</string>
 				<key>subtext</key>
 				<string>CC98 24小时热门话题</string>
 				<key>title</key>
